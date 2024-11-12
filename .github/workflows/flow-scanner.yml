@@ -1,0 +1,23 @@
+name: Salesforce Flow Scanner
+on: [pull_request]
+# on:
+#   workflow_dispatch:
+jobs:
+  salesforce-code-analyzer-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out files
+        uses: actions/checkout@v4
+
+      - name: Install Salesforce CLI
+        run: npm install -g @salesforce/cli@latest
+
+      - name: Install Salesforce Code Analyzer Plugin
+        run: sf plugins install @salesforce/sfdx-scanner@latest
+
+      - name: Install flow scanner plugin
+        run: echo 'y' | sf plugins:install lightning-flow-scanner
+
+      - name: Run flow scanner
+        id: run-flow-scanner
+        run: sf flow:scan -d src/flows --failon warning
