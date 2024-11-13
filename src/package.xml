@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>Attendee__c</members>
-        <members>Feedback__c</members>
-        <members>Training_Session__c</members>
+        <members>User</members>
         <name>CustomObject</name>
     </types>
     <types>
-        <members>Training_Session__c-Webinar</members>
-        <members>Training_Session__c-Workshop</members>
+        <members>Contact-Customer Layout</members>
+        <members>Contact-Service Provider Layout</members>
         <name>Layout</name>
     </types>
     <types>
-        <members>Training_Session__c.Webinar</members>
-        <members>Training_Session__c.Workshop</members>
-        <name>RecordType</name>
+        <members>Service Account Team</members>
+        <members>Technology Team</members>
+        <name>Profile</name>
     </types>
     <types>
-        <members>Attendee__c.Email_Addresses_format</members>
-        <members>Training_Session__c.Session_date_Today_onwads_only</members>
-        <name>ValidationRule</name>
+        <members>Contact.Customer</members>
+        <members>Contact.Service_Provider</members>
+        <name>RecordType</name>
     </types>
     <version>60.0</version>
 </Package>
