@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+ <types>
+        <members>*</members>
+        <name>ApprovalProcess</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CompactLayout</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
+        <members>Bypass_Logic__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Training_Session__c.DR_Training_Session</members>
+        <name>DuplicateRule</name>
+    </types>
+    <types>
+        <members>Demo_Home_page</members>
+        <members>Opp_Page</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>Training_Session__c.MR_Training_Session</members>
+        <name>MatchingRule</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>PathAssistant</name>
+    </types>
+    <types>
+        <members>RR_Service_Acc_Team</members>
+        <members>RR_Webinar_Rec_Type</members>
+        <members>SR_Custom_Perm</members>
+        <name>RestrictionRule</name>
+    </types>
     <types>
         <members>Collections</members>
         <name>ApexClass</name>
