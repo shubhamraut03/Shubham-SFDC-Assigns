@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Seminar_Training_Label</fullName>
+        <categories>Training Session</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Seminar_Training_Label</shortDescription>
+        <value>&quot;Attend an in-person seminar with industry leaders and networking opportunities.&quot;</value>
+    </labels>
+    <labels>
+        <fullName>Webinar_Training_Label</fullName>
+        <categories>Training Session</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Webinar_Training_Label</shortDescription>
+        <value>&quot;Join us for an engaging online session where experts share valuable insights.&quot;</value>
+    </labels>
+    <labels>
+        <fullName>Workshop_Training_Label</fullName>
+        <categories>Training Session</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Workshop_Training_Label</shortDescription>
+        <value>&quot;Hands-on training with interactive exercises and personalized feedback.&quot;</value>
+    </labels>
+</CustomLabels>
