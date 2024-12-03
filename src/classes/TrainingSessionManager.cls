@@ -241,16 +241,21 @@ public with sharing class TrainingSessionManager {
      **/
     
     public void safeNavigationOp() {
-        
-        List<Training_Session__c> trainingSessionList = [ SELECT Id, Location__c FROM Training_Session__c];
-        
-        List<String> listOfString = new List<String>();
-        
-        if(!trainingSessionList.isEmpty()){
-            for(Training_Session__c objTraining : trainingSessionList){
-                String locationString = objTraining?.Location__c;
-                listOfString.add(locationString);
+        try{
+            List<Training_Session__c> trainingSessionList = [ SELECT Id, Location__c FROM Training_Session__c];
+            
+            if(!trainingSessionList.isEmpty()){
+                
+                List<String> listOfString = new List<String>();
+                
+                for(Training_Session__c objTraining : trainingSessionList){
+                    String locationString = objTraining?.Location__c;
+                    listOfString.add(locationString);
+                }
             }
+        }
+        catch(Exception e){
+            System.debug('Error in safely navigating through records: ' + e.getMessage());
         }
     }
     
@@ -268,24 +273,28 @@ public with sharing class TrainingSessionManager {
      *
      **/
     public void getTrainingSessionMessages() {
-        List<Training_Session__c> sessionList = [SELECT Id, Name__c, Session_Type__c, RecordType.DeveloperName FROM Training_Session__c];
-        
-        
-        for (Training_Session__c session : sessionList) {
-            String sessionMessage;
+        try {
+            List<Training_Session__c> sessionList = [SELECT Id, Name__c, Session_Type__c, RecordType.DeveloperName FROM Training_Session__c];
             
-            if (session.RecordType.DeveloperName == 'Webinar') {
-                sessionMessage = 'Session: ' + session.Name__c + ' - '+ session.RecordType.DeveloperName + ' - ' + Label.Webinar_Training_Label;
-                system.debug(sessionMessage);
-            } else if (session.RecordType.DeveloperName == 'Workshop') {
-                sessionMessage = 'Session: ' + session.Name__c + ' - '+ session.RecordType.DeveloperName + ' - ' + Label.Workshop_Training_Label;
-                system.debug(sessionMessage);
+            for (Training_Session__c session : sessionList) {
+                String sessionMessage;
                 
-            } else if (session.RecordType.DeveloperName == 'Seminar') {
-                sessionMessage = 'Session: ' + session.Name__c + ' - '+ session.RecordType.DeveloperName + ' - ' + Label.Seminar_Training_Label;
-                system.debug(sessionMessage);
+                if (session.RecordType.DeveloperName == 'Webinar') {
+                    sessionMessage = 'Session: ' + session.Name__c + ' - '+ session.RecordType.DeveloperName + ' - ' + Label.Webinar_Training_Label;
+                    system.debug(sessionMessage);
+                } else if (session.RecordType.DeveloperName == 'Workshop') {
+                    sessionMessage = 'Session: ' + session.Name__c + ' - '+ session.RecordType.DeveloperName + ' - ' + Label.Workshop_Training_Label;
+                    system.debug(sessionMessage);
+                    
+                } else if (session.RecordType.DeveloperName == 'Seminar') {
+                    sessionMessage = 'Session: ' + session.Name__c + ' - '+ session.RecordType.DeveloperName + ' - ' + Label.Seminar_Training_Label;
+                    system.debug(sessionMessage);
+                }
+                
             }
-            
+        }
+        catch (Exception e) {
+            System.debug('Error in getting Messages: ' + e.getMessage());
         }
         
     }
