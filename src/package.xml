@@ -39,5 +39,18 @@
         <members>SR_Custom_Perm</members>
         <name>RestrictionRule</name>
     </types>
+    <types>
+        <members>TrainingSessionManager</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Seminar_Training_Label</members>
+        <members>Webinar_Training_Label</members>
+        <members>Workshop_Training_Label</members>
+        <name>CustomLabel</name>
+    </types>
+        <members>Collections</members>
+        <name>ApexClass</name>
+    </types>
     <version>60.0</version>
 </Package>
