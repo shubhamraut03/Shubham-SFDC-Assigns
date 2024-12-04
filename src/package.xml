@@ -49,5 +49,8 @@
         <members>Workshop_Training_Label</members>
         <name>CustomLabel</name>
     </types>
+        <members>Collections</members>
+        <name>ApexClass</name>
+    </types>
     <version>60.0</version>
 </Package>
