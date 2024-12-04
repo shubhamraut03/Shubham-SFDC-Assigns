@@ -39,8 +39,7 @@
         <members>SR_Custom_Perm</members>
         <name>RestrictionRule</name>
     </types>
- <types>
-        <members>Collections</members>
+    <types>
         <members>TrainingSessionManager</members>
         <name>ApexClass</name>
     </types>
