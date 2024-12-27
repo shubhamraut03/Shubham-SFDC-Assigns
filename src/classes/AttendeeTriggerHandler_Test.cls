@@ -8,7 +8,7 @@
 *
 * Revision Logs : V1.0 - Created - Shubham Raut
 *
-* Coverage : 100%
+* Coverage : 88%
 **/
 @isTest
 private class AttendeeTriggerHandler_Test {
@@ -17,28 +17,11 @@ private class AttendeeTriggerHandler_Test {
     @testSetup
     private static void createTrainingSesAndContact_Test(){
         
-        //Training Session
-        List<Training_Session__c> listOfTrainingSess = new List<Training_Session__c>();
+        //Created Training Session
+        List<Training_Session__c> listOfTrainingSess = TestDataFactory.createTrainingSessionRec('Training Session', 3, true);
         
-        for(Integer i=0 ; i < 3 ; i++){
-            Training_Session__c objSess = new Training_Session__c();
-            objSess.Name__c = 'Training Session'+i;
-            objSess.Session_Date__c = System.today();
-            listOfTrainingSess.add(objSess);     
-        }
-        
-        insert listOfTrainingSess;
-        
-        //Contact
-        List<Contact> listOfContact = new List<Contact>();
-        
-        for(Integer i=0 ; i < 2 ; i++){
-            
-            Contact objCon = new Contact(LastName = 'Contact'+i);
-            listOfContact.add(objCon);     
-        }
-        
-        insert listOfContact;        
+        //Created Contact
+        List<Contact> listOfContact = TestDataFactory.createContactRec('Test Contact', 2, true);
     }
     
     //=================================================Insert==========================================================
@@ -46,12 +29,12 @@ private class AttendeeTriggerHandler_Test {
     @isTest(seeAllData = false)
     private static void countSessionsOnContact_Test(){
         
+        //Arrange
         List<Attendee__c> listOfAttendee = new List<Attendee__c>();
         
         List<Training_Session__c> listOfTrainingSess = [SELECT Id FROM Training_Session__c];
         
         List<Contact> listOfContact = [SELECT Id FROM Contact LIMIT 1];
-        
         
         Attendee__c objAtt1 = new Attendee__c();
         objAtt1.Email__c = 'demo@gmail.com';
@@ -65,30 +48,28 @@ private class AttendeeTriggerHandler_Test {
         objAtt2.Contact__c = listOfContact[0].Id;
         listOfAttendee.add(objAtt2);
         
-        try{
-            Test.startTest();
-            insert listOfAttendee;
-            Test.stopTest();
-            
-            Contact UpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 1];
-            
-            Assert.areEqual(2 , UpdatedContact.No_of_Sessions__c, 'Error in getting Training Sess Count!');
-        }
-        catch(Exception e){
-            System.debug('Error inserting Attendees :=>' + e.getMessage());
-        }       
+        //Act
+        Test.startTest();
+        insert listOfAttendee;
+        Test.stopTest();
+        
+        Contact UpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 1];
+        
+        //Assert
+        Assert.areEqual(2 , UpdatedContact.No_of_Sessions__c, 'Error in getting Training Sess Count!');
+        
     }
     
     
     @isTest(seeAllData = false)
     private static void countUniqueSessionsOnContact_Test(){
         
+        //Arrange
         List<Attendee__c> listOfAttendee = new List<Attendee__c>();
         
         List<Training_Session__c> listOfTrainingSess = [SELECT Id FROM Training_Session__c];
         
         List<Contact> listOfContact = [SELECT Id FROM Contact LIMIT 1];
-        
         
         Attendee__c objAtt1 = new Attendee__c();
         objAtt1.Email__c = 'demo@gmail.com';
@@ -102,18 +83,16 @@ private class AttendeeTriggerHandler_Test {
         objAtt2.Contact__c = listOfContact[0].Id;
         listOfAttendee.add(objAtt2);
         
-        try{
-            Test.startTest();
-            insert listOfAttendee;
-            Test.stopTest();
-            
-            Contact UpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 1];
-            
-            Assert.areEqual(1 , UpdatedContact.No_of_Sessions__c, 'Error in getting Training Sess Count!');
-        }
-        catch(Exception e){
-            System.debug('Error inserting Attendees :=>' + e.getMessage());
-        }        
+        //Act
+        Test.startTest();
+        insert listOfAttendee;
+        Test.stopTest();
+        
+        Contact UpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 1];
+        
+        //Assert
+        Assert.areEqual(1 , UpdatedContact.No_of_Sessions__c, 'Error in getting Training Sess Count!');
+        
     }
     
     //=====================================Update===========================================================================
@@ -121,12 +100,12 @@ private class AttendeeTriggerHandler_Test {
     @isTest(seeAllData = false)
     private static void countSessionOnContactWhenAttendeeUpdated_Test(){
         
+        //Arrange
         List<Attendee__c> listOfAttendee = new List<Attendee__c>();
         
         List<Training_Session__c> listOfTrainingSess = [SELECT Id FROM Training_Session__c];
         
         List<Contact> listOfContact = [SELECT Id FROM Contact];
-        
         
         Attendee__c objAtt1 = new Attendee__c();
         objAtt1.Email__c = 'demo@gmail.com';
@@ -151,33 +130,29 @@ private class AttendeeTriggerHandler_Test {
         Attendee__c updateAttendee = [SELECT Id, Contact__c, Session__c FROM Attendee__c LIMIT 1];
         updateAttendee.Contact__c = listOfContact[1].Id;
         
-        try{
-            Test.startTest();
-            update updateAttendee;
-            Test.stopTest();
-            
-            List<Contact> listOfUpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 2];
-            
-            Assert.areEqual(2 , listOfUpdatedContact[0].No_of_Sessions__c, 'Error in getting Training Sess Count!');
-            
-            Assert.areEqual(1 , listOfUpdatedContact[1].No_of_Sessions__c, 'Error in getting Training Sess Count!');
-            
-        }
-        catch(Exception e){
-            System.debug('Error Updating Attendees :=>' + e.getMessage());
-        }        
+        //Act
+        Test.startTest();
+        update updateAttendee;
+        Test.stopTest();
+        
+        List<Contact> listOfUpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 2];
+        
+        //Assert
+        Assert.areEqual(2 , listOfUpdatedContact[0].No_of_Sessions__c, 'Error in getting Training Sess Count!');
+        
+        Assert.areEqual(1 , listOfUpdatedContact[1].No_of_Sessions__c, 'Error in getting Training Sess Count!');     
     }
     
     
     @isTest(seeAllData = false)
     private static void countSessionOnContactWhenAttendeeUpdated_Test101(){
         
+        //Arrange
         List<Attendee__c> listOfAttendee = new List<Attendee__c>();
         
         List<Training_Session__c> listOfTrainingSess = [SELECT Id FROM Training_Session__c];
         
         List<Contact> listOfContact = [SELECT Id FROM Contact];
-        
         
         Attendee__c objAtt1 = new Attendee__c();
         objAtt1.Email__c = 'demo@gmail.com';
@@ -202,55 +177,47 @@ private class AttendeeTriggerHandler_Test {
         Attendee__c updateAttendee = [SELECT Id, Contact__c, Session__c FROM Attendee__c LIMIT 1];
         updateAttendee.Contact__c = listOfContact[0].Id;
         
-        try{
-            Test.startTest();
-            update updateAttendee;
-            Test.stopTest();
-            
-            List<Contact> listOfUpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 2];
-            
-            Assert.areEqual(2 , listOfUpdatedContact[0].No_of_Sessions__c, 'Error in getting Training Sess Count!');
-            
-            Assert.areEqual(0 , listOfUpdatedContact[1].No_of_Sessions__c, 'Error in getting Training Sess Count!');
-            
-        }
-        catch(Exception e){
-            System.debug('Error Updating Attendees :=>' + e.getMessage());
-        }        
+        //Act
+        Test.startTest();
+        update updateAttendee;
+        Test.stopTest();
+        
+        List<Contact> listOfUpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 2];
+        
+        //Assert
+        Assert.areEqual(2 , listOfUpdatedContact[0].No_of_Sessions__c, 'Error in getting Training Sess Count!');
+        
+        Assert.areEqual(0 , listOfUpdatedContact[1].No_of_Sessions__c, 'Error in getting Training Sess Count!');
+        
     }
     
     
     @isTest(seeAllData = false)
     private static void countSessOnConWhenBlankConAttendeeUpdated_Test(){
         
+        //Arrange
         List<Training_Session__c> listOfTrainingSess = [SELECT Id FROM Training_Session__c];
         
         Contact objContact = [SELECT Id FROM Contact LIMIT 1];
         
-        
         Attendee__c objAtt1 = new Attendee__c();
         objAtt1.Email__c = 'demo@gmail.com';
         objAtt1.Session__c = listOfTrainingSess[0].Id;
-        
         
         insert objAtt1;
         
         Attendee__c updateAttendee = [SELECT Id, Contact__c, Session__c FROM Attendee__c LIMIT 1];
         updateAttendee.Contact__c = objContact.Id;
         
-        try{
-            Test.startTest();
-            update updateAttendee;
-            Test.stopTest();
-            
-            Contact objOfUpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 1];
-            
-            Assert.areEqual(1 , objOfUpdatedContact.No_of_Sessions__c, 'Error in getting Training Sess Count!');
-            
-        }
-        catch(Exception e){
-            System.debug('Error Updating Attendees :=>' + e.getMessage());
-        }        
+        //Act
+        Test.startTest();
+        update updateAttendee;
+        Test.stopTest();
+        
+        Contact objOfUpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 1];
+        
+        //Assert
+        Assert.areEqual(1 , objOfUpdatedContact.No_of_Sessions__c, 'Error in getting Training Sess Count!');   
     }   
     
     //=====================================Delete============================================================================
@@ -258,12 +225,12 @@ private class AttendeeTriggerHandler_Test {
     @isTest(seeAllData = false)
     private static void countSessionOnContactWhenAttendeeDeleted_Test(){
         
+        //Arrange
         List<Attendee__c> listOfAttendee = new List<Attendee__c>();
         
         List<Training_Session__c> listOfTrainingSess = [SELECT Id FROM Training_Session__c];
         
         List<Contact> listOfContact = [SELECT Id FROM Contact LIMIT 1];
-        
         
         Attendee__c objAtt1 = new Attendee__c();
         objAtt1.Email__c = 'demo@gmail.com';
@@ -279,18 +246,15 @@ private class AttendeeTriggerHandler_Test {
         
         insert listOfAttendee;
         
-        try{
-            Test.startTest();
-            delete listOfAttendee[0];
-            Test.stopTest();
-            
-            Contact UpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 1];
-            
-            Assert.areEqual(1 , UpdatedContact.No_of_Sessions__c, 'Error in getting Training Ses Count!');
-        }
-        catch(Exception e){
-            System.debug('Error Deleting Attendees :=>' + e.getMessage());
-        }       
+        //Act
+        Test.startTest();
+        delete listOfAttendee[0];
+        Test.stopTest();
+        
+        Contact UpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 1];
+        
+        //Assert
+        Assert.areEqual(1 , UpdatedContact.No_of_Sessions__c, 'Error in getting Training Ses Count!');   
     }
     
     
@@ -298,13 +262,13 @@ private class AttendeeTriggerHandler_Test {
     @isTest(seeAllData = false)
     private static void countUniqueSessionOnContactWhenAttendeeDeleted_Test(){
         
+        //Act
         List<Attendee__c> listOfAttendee = new List<Attendee__c>();
         
         List<Training_Session__c> listOfTrainingSess = [SELECT Id FROM Training_Session__c];
         
         List<Contact> listOfContact = [SELECT Id FROM Contact LIMIT 1];
-        
-        
+              
         Attendee__c objAtt1 = new Attendee__c();
         objAtt1.Email__c = 'demo@gmail.com';
         objAtt1.Session__c = listOfTrainingSess[0].Id;
@@ -323,31 +287,27 @@ private class AttendeeTriggerHandler_Test {
         objAtt3.Contact__c = listOfContact[0].Id;
         listOfAttendee.add(objAtt3);
         
-        
         insert listOfAttendee;
         
-        try{
-            Test.startTest();
-            delete listOfAttendee[0];
-            Test.stopTest();
-            
-            Contact UpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 1];
-            
-            Assert.areEqual(2 , UpdatedContact.No_of_Sessions__c, 'Error in getting Training Ses Count!');
-        }
-        catch(Exception e){
-            System.debug('Error Deleting Attendees :=>' + e.getMessage());
-        }       
+        //Act
+        Test.startTest();
+        delete listOfAttendee[0];
+        Test.stopTest();
+        
+        Contact UpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 1];
+        
+        //Assert
+        Assert.areEqual(2 , UpdatedContact.No_of_Sessions__c, 'Error in getting Training Ses Count!');
     }
     
     
     @isTest(seeAllData = false)
     private static void countUniqueSessionOnContactWhenOnlyAttendeeDeleted_Test(){
         
+        //Act
         List<Training_Session__c> listOfTrainingSess = [SELECT Id FROM Training_Session__c LIMIT 1];
         
         List<Contact> listOfContact = [SELECT Id FROM Contact LIMIT 1];
-        
         
         Attendee__c objAtt1 = new Attendee__c();
         objAtt1.Email__c = 'demo@gmail.com';
@@ -356,18 +316,15 @@ private class AttendeeTriggerHandler_Test {
         
         insert objAtt1;
         
-        try{
-            Test.startTest();
-            delete objAtt1;
-            Test.stopTest();
-            
-            Contact UpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 1];
-            
-            Assert.areEqual(0 , UpdatedContact.No_of_Sessions__c, 'Error in getting Training Ses Count!');
-        }
-        catch(Exception e){
-            System.debug('Error Deleting Attendees :=>' + e.getMessage());
-        }      
+        //Act
+        Test.startTest();
+        delete objAtt1;
+        Test.stopTest();
+        
+        Contact UpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 1];
+        
+        //Assert
+        Assert.areEqual(0 , UpdatedContact.No_of_Sessions__c, 'Error in getting Training Ses Count!');
     }    
     
     //=====================================Undelete==========================================================================
@@ -375,12 +332,12 @@ private class AttendeeTriggerHandler_Test {
     @isTest(seeAllData = false)
     private static void countUniqueSessionsOnContact_Test1(){
         
+        //Arrange
         List<Attendee__c> listOfAttendee = new List<Attendee__c>();
         
         List<Training_Session__c> listOfTrainingSess = [SELECT Id FROM Training_Session__c];
         
         List<Contact> listOfContact = [SELECT Id FROM Contact LIMIT 1];
-        
         
         Attendee__c objAtt1 = new Attendee__c();
         objAtt1.Email__c = 'demo@gmail.com';
@@ -399,18 +356,15 @@ private class AttendeeTriggerHandler_Test {
         Attendee__c objAttendeeToDelete = [SELECT Id FROM Attendee__c LIMIT 1];
         
         delete objAttendeeToDelete;
-                
-        try{
-            Test.startTest();
-            undelete objAttendeeToDelete;
-            Test.stopTest();
-            
-            Contact UpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 1];
-            
-            Assert.areEqual(2 , UpdatedContact.No_of_Sessions__c, 'Error in getting Training Sess Count!');
-        }
-        catch(Exception e){
-            System.debug('Error Undeleting Attendees :=>' + e.getMessage());
-        }        
+        
+        //Act
+        Test.startTest();
+        undelete objAttendeeToDelete;
+        Test.stopTest();
+        
+        Contact UpdatedContact = [SELECT Id, No_of_Sessions__c FROM Contact LIMIT 1];
+        
+        //Assert
+        Assert.areEqual(2 , UpdatedContact.No_of_Sessions__c, 'Error in getting Training Sess Count!');
     }
 }

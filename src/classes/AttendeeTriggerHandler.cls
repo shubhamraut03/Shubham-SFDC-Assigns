@@ -1,15 +1,15 @@
 /**
- * Description : It Contains Attendee Triggers Related Logic Methods
- *               (Attendee is Child of Contact And Training Session)
- *
- * Created By : Shubham Raut
- *
- * Created Date : 10/12/24
- *
- * Revision Logs : V1.0 - Created - Shubham Raut
- *
- *
- **/
+* Description : It Contains Attendee Triggers Related Logic Methods
+*               (Attendee is Child of Contact And Training Session)
+*
+* Created By : Shubham Raut
+*
+* Created Date : 10/12/24
+*
+* Revision Logs : V1.0 - Created - Shubham Raut
+*
+*
+**/
 public class AttendeeTriggerHandler extends TriggerHandler{
     
     List<Attendee__c> newListOfAttendee ;
@@ -22,21 +22,19 @@ public class AttendeeTriggerHandler extends TriggerHandler{
         newListOfAttendee = (List<Attendee__c>) Trigger.new;
         oldListOfAttendee = (List<Attendee__c>) Trigger.old;
         newMapOfAttendee = (Map<Id, Attendee__c>) Trigger.newMap;
-        oldMapOfAttendee = (Map<Id, Attendee__c>) Trigger.oldMap;
-        
-        //this.setMaxLoopCount(1);
+        oldMapOfAttendee = (Map<Id, Attendee__c>) Trigger.oldMap;        
     }
     
     public override void beforeInsert() {
-            				
+        
     }
     
     public override void beforeUpdate() {
-        				
+        
     }
     
     public override void beforeDelete() {
-        				
+        
     }
     
     public override void afterInsert() {    
@@ -50,28 +48,28 @@ public class AttendeeTriggerHandler extends TriggerHandler{
     }
     
     public override void afterDelete() {
-       
+        
         countOfTrainingSessions(oldListOfAttendee, oldMapOfAttendee, newMapOfAttendee);
     }
     
     public override void afterUndelete() {
-      
+        
         countOfTrainingSessions(newListOfAttendee, oldMapOfAttendee, newMapOfAttendee);
     }
-
     
-    /**
-     *
-     * @description : To Count Training Sessions which is associated to Contact through Attendee 
-     *                (Attendee is Child of Contact And Training Session)
-     *
-     * @args : listOfAttendee (new or old) , newMapOfAttendee , oldMapOfAttendee.
-     *
-     * @return : void
-     *
-     * @revision Log : V1.1 - Created - 10/12/24 - Shubham Raut
-     *
-     **/
+    
+/**
+*
+* @description : To Count Training Sessions which is associated to Contact through Attendee 
+*                (Attendee is Child of Contact And Training Session)
+*
+* @args : listOfAttendee (new or old) , newMapOfAttendee , oldMapOfAttendee.
+*
+* @return : void
+*
+* @revision Log : V1.1 - Created - 10/12/24 - Shubham Raut
+*
+**/
     public static void countOfTrainingSessions(List<Attendee__c> listOfAttendee, Map<Id, Attendee__c> oldMapOfAttendee, Map<Id, Attendee__c> newMapOfAttendee)
     {
         
@@ -93,9 +91,9 @@ public class AttendeeTriggerHandler extends TriggerHandler{
         }
         
         
-        system.debug(setOfIds);
-        
         Map<Id ,Set<Id>>  mapOfContactIdsWithRelatedSessionIds = new Map<Id, Set<Id>>();
+        
+        List<Contact> listOfContact = new List<Contact>();  
         
         if(!setOfIds.isEmpty())
         {
@@ -112,18 +110,15 @@ public class AttendeeTriggerHandler extends TriggerHandler{
                     mapOfContactIdsWithRelatedSessionIds.get(objAtt.Contact__c).add(objAtt.Session__c);
                 }
             }
+
+            
+            for(Id conId : setOfIds)
+            {
+                listOfContact.add(new Contact(Id = conId , 
+                                              No_of_Sessions__c = mapOfContactIdsWithRelatedSessionIds.containsKey(conId) ? 
+                                              mapOfContactIdsWithRelatedSessionIds.get(conId).size() : 0));        
+            }
         }
-        
-        List<Contact> listOfContact = new List<Contact>();      
-        
-        for(Id conId : setOfIds)
-        {
-            listOfContact.add(new Contact(Id = conId , 
-                                          No_of_Sessions__c = mapOfContactIdsWithRelatedSessionIds.containsKey(conId) ? 
-                                          mapOfContactIdsWithRelatedSessionIds.get(conId).size() : 0));        
-        }       
-        
-        system.debug(listOfContact);
         
         if(!listOfContact.isEmpty())
             update listOfContact;      

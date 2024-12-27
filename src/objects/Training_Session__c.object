@@ -306,8 +306,8 @@
     </validationRules>
     <validationRules>
         <fullName>Session_date_Today_onwads_only</fullName>
-        <active>false</active>
-        <errorConditionFormula>Session_Date__c  &gt;  TODAY()</errorConditionFormula>
+        <active>true</active>
+        <errorConditionFormula>Session_Date__c  &lt;  TODAY()</errorConditionFormula>
         <errorDisplayField>Session_Date__c</errorDisplayField>
         <errorMessage>Select Session Date Today Onwards only.</errorMessage>
     </validationRules>

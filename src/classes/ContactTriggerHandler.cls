@@ -1,6 +1,5 @@
 /**
- * Description : It Contains Contact Triggers Related Logic Methods
- *               (Contact is child of Account)
+ * Description : It Contains Contact Trigger Handler Methods              
  *
  * Created By : Shubham Raut
  *

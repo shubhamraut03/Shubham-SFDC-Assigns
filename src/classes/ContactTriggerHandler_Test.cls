@@ -1,6 +1,5 @@
 /**
-* Description : It Contains Contact Triggers Test Methods for Coverage
-*               (Contact is child of Account)
+* Description : It Contains ContactTriggerHandler Test Methods for Coverage             
 *
 * Created By : Shubham Raut
 *
@@ -15,27 +14,25 @@ private class ContactTriggerHandler_Test {
     
     //Setup method to create Account
     @testSetup
-    private static void createAccountRec(){
+    private static void setupAccountRec(){
         
-        Account objAccount = new Account();
-        objAccount.Name = 'Test Account';
-        objAccount.Phone = '9685746352';
-        objAccount.Domain__c = '@gmail.com';
+        List<Account> listOfAccount = TestDataFactory.createAccountRec('Test Account', 1, false);
+        listOfAccount[0].Domain__c = '@gmail.com';
         
-        insert objAccount;
+        insert listOfAccount;
     }
     
     //Generic method to create Contact
     @isTest(seeAllData = false)
-    private static Contact createContactTest(){
+    private static List<Contact> createContactTest(){
         
         Account objAccount = [SELECT Id FROM Account];
         
-        Contact objCon1 = new Contact();
-        objCon1.LastName = 'Test Contact 1';
-        objCon1.AccountId = objAccount.Id;
+        List<Contact> listOfContact = TestDataFactory.createContactRec('Test Contact', 1, false);
         
-        return objCon1;
+        listOfContact[0].AccountId = objAccount.Id;
+        
+        return listOfContact;
     }
     
     //=====================================Insert====================================================
@@ -43,15 +40,14 @@ private class ContactTriggerHandler_Test {
     private static void checkWrongEmailDomainOfConWithRelAccWhenInsertTest(){
         
         //Arrange
-        Contact objCon = createContactTest();
-        
-        objCon.Email = 'test@gail.com';
+        List<Contact> listOfContact = createContactTest();
+        listOfContact[0].Email = 'test@gail.com';
         
         
         //Act
         Test.startTest();
         try{
-            insert objCon;
+            insert listOfContact;
         }
         //Assert
         catch(Exception e){
@@ -65,14 +61,13 @@ private class ContactTriggerHandler_Test {
     private static void checkEmailDomainOfConWithRelAccWhenInsertTest(){
         
         //Arrange
-        Contact objCon = createContactTest();
-        
-        objCon.Email = 'test@gmail.com';
+        List<Contact> listOfContact = createContactTest();
+        listOfContact[0].Email = 'test@gmail.com';
         
         //Act
         Test.startTest();
         try{
-            insert objCon;
+            insert listOfContact;
         }
         //Assert
         catch(Exception e){
@@ -87,11 +82,10 @@ private class ContactTriggerHandler_Test {
     private static void checkWrongEmailDomainOfConWithRelAccWhenUpdateTest(){
         
         //Arrange
-        Contact objCon = createContactTest();
+        List<Contact> listOfContact = createContactTest();
+        listOfContact[0].Email = 'test@gmail.com';
         
-        objCon.Email = 'test@gmail.com';
-        
-        insert objCon;
+        insert listOfContact;
         
         Contact objContact = [SELECT Id, Email FROM Contact];
         objContact.Email = 'test@gail.com';
@@ -113,11 +107,10 @@ private class ContactTriggerHandler_Test {
     private static void checkEmailDomainOfConWithRelAccWhenUpdateTest(){
         
         //Arrange
-        Contact objCon = createContactTest();
+        List<Contact> listOfContact = createContactTest();
+        listOfContact[0].Email = 'test@gmail.com';
         
-        objCon.Email = 'test@gmail.com';
-        
-        insert objCon;
+        insert listOfContact;
         
         Contact objContact = [SELECT Id, Email FROM Contact];
         objContact.Email = 'test@gmail.com';
@@ -125,7 +118,7 @@ private class ContactTriggerHandler_Test {
         //Act
         Test.startTest();
         try{
-            update objCon;
+            update objContact;
         }
         //Assert
         catch(Exception e){

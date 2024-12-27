@@ -351,6 +351,17 @@
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
+        <fullName>Number_Of_Contacts__c</fullName>
+        <externalId>false</externalId>
+        <label>Number Of Contacts</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>NumberofLocations__c</fullName>
         <externalId>false</externalId>
         <label>Number of Locations</label>
@@ -567,7 +578,7 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Phone_Val</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(ISBLANK( Phone ),  NOT($Setup.Bypass_Logic__c.Bypass_Validation_Rules__c)  )</errorConditionFormula>
         <errorDisplayField>Phone</errorDisplayField>
         <errorMessage>Phone no. is Required.</errorMessage>

@@ -55,6 +55,9 @@
 	<members>AttendeeTriggerHandler_Test</members>
 	<members>ContactTriggerHandler</members>
 	<members>ContactTriggerHandler_Test</members>
+        <members>TestDataFactory</members>
+        <members>TriggerHandler</members>
+	<members>TriggerHandler_Test</members>
         <name>ApexClass</name>
     </types>
     <types>
