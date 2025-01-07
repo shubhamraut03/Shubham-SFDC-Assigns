@@ -49,6 +49,12 @@
 	<name>ApexTrigger</name>
     </types>
     <types>
+	    <members>AccountProcessorAsync</members>
+        <members>AccountProcessorAsyncTest</members>
+        <members>AddPrimaryContactQueue</members>
+        <members>AddPrimaryContactQueueTest</members>
+        <members>LeadProcessorBatch</members>
+        <members>LeadProcessorBatchTest</members>
         <members>TrainingSessionManager</members>
         <members>Collections</members>
         <members>AttendeeTriggerHandler</members>
@@ -66,4 +72,5 @@
         <members>Workshop_Training_Label</members>
         <name>CustomLabel</name>
     <version>60.0</version>
+
 </Package>
