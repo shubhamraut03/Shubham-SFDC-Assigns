@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>AccountProcessorAsync</members>
-        <members>AccountProcessorAsyncTest</members>
-        <members>AddPrimaryContactQueue</members>
-        <members>AddPrimaryContactQueueTest</members>
-        <members>LeadProcessorBatch</members>
-        <members>LeadProcessorBatchTest</members>
-        <name>ApexClass</name>
-    </types>
-    <version>62.0</version>
         <members>*</members>
         <name>ApprovalProcess</name>
     </types>
@@ -58,6 +49,12 @@
 	<name>ApexTrigger</name>
     </types>
     <types>
+	    <members>AccountProcessorAsync</members>
+        <members>AccountProcessorAsyncTest</members>
+        <members>AddPrimaryContactQueue</members>
+        <members>AddPrimaryContactQueueTest</members>
+        <members>LeadProcessorBatch</members>
+        <members>LeadProcessorBatchTest</members>
         <members>TrainingSessionManager</members>
         <members>Collections</members>
         <members>AttendeeTriggerHandler</members>
