@@ -2,11 +2,11 @@ trigger EventTrigger on Event (after insert, after update, after delete, after u
 
     if(Trigger.isAfter){
         if(Trigger.isInsert || Trigger.isUpdate || Trigger.isUndelete){
-            EventTriggerHandler.rollupEventOnAccount();
+            EventTriggerHandler.rollupEventOnAccount(Trigger.new, Trigger.oldMap);
         }
         
         if(Trigger.isDelete){
-            EventTriggerHandler.rollupEventOnAccount();
+            EventTriggerHandler.rollupEventOnAccount(Trigger.old, Trigger.oldMap);
         }
     }
 }
