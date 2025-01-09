@@ -1,0 +1,12 @@
+trigger EventTrigger on Event (after insert, after update, after delete, after undelete) {
+
+    if(Trigger.isAfter){
+        if(Trigger.isInsert || Trigger.isUpdate || Trigger.isUndelete){
+            EventTriggerHandler.rollupEventOnAccount();
+        }
+        
+        if(Trigger.isDelete){
+            EventTriggerHandler.rollupEventOnAccount();
+        }
+    }
+}
