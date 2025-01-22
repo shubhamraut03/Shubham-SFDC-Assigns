@@ -9,7 +9,7 @@
         <name>CompactLayout</name>
     </types>
     <types>
-        <members>*</members>
+        <members>Archive_Config.Account_Info</members>
         <name>CustomMetadata</name>
     </types>
     <types>
@@ -18,6 +18,8 @@
 	<members>Contact</members>
 	<members>Training_Session__c</members>
         <members>Bypass_Logic__c</members>
+        <members>Archive_Config__mdt</members>
+        <members>Contact</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -49,7 +51,7 @@
 	<name>ApexTrigger</name>
     </types>
     <types>
-	    <members>AccountProcessorAsync</members>
+	<members>AccountProcessorAsync</members>
         <members>AccountProcessorAsyncTest</members>
         <members>AddPrimaryContactQueue</members>
         <members>AddPrimaryContactQueueTest</members>
@@ -64,6 +66,11 @@
         <members>TestDataFactory</members>
         <members>TriggerHandler</members>
 	<members>TriggerHandler_Test</members>
+        <members>GenericSObjectBatch</members>
+        <members>GenericSObjectBatchSchedule</members>
+        <members>GenericSObjectBatchSchedule_Test</members>
+        <members>GenericSObjectBatch_Test</members>
+        <members>PopulatePicklistOnContact_Test</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -71,6 +78,7 @@
         <members>Webinar_Training_Label</members>
         <members>Workshop_Training_Label</members>
         <name>CustomLabel</name>
+    </types>
     <version>60.0</version>
 
 </Package>

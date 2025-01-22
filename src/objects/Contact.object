@@ -480,6 +480,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Object_Name__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This Field will get value Automatically. According to the Record Id.</inlineHelpText>
+        <label>Object Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>OtherAddress</fullName>
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
@@ -497,9 +508,28 @@
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
+        <fullName>Picklist_Fields__c</fullName>
+        <inlineHelpText>This Field will have Value Automatically according to the Record Id.</inlineHelpText>
+        <label>Picklist Fields</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>Pronouns</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>RecordID__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Any Record Id which has Picklist Field.</inlineHelpText>
+        <label>RecordID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>ReportsToId</fullName>
@@ -515,6 +545,13 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Status</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Title</fullName>
