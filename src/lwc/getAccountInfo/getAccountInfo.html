@@ -1,0 +1,54 @@
+<!--
+*
+* Description - This will display the account information and create a new contact for the account using the lightning-record form
+*
+-->
+<template>
+    <lightning-card icon-name="standard:account" variant="base" title="Account Information">
+
+        <!-- Display Account Information -->
+        <lightning-record-view-form record-id={recordId} object-api-name={objectApiName}>
+            <div class="slds-grid slds-m-around_medium">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Name"></lightning-output-field>
+                    <lightning-output-field field-name="Phone"></lightning-output-field>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Website"></lightning-output-field>
+                    <lightning-output-field field-name="Industry"></lightning-output-field>
+                </div>
+            </div>
+        </lightning-record-view-form>
+
+        <!-- To Show Create New Contact Onclick -->
+        <div class="slds-m-around_medium">
+            <lightning-button variant="brand" label="Create New Contact"
+                onclick={showCreateContactHandler}></lightning-button>
+        </div>
+
+        <!-- Create Contact Form -->
+        <template lwc:if={isShowContactForm}>
+            <lightning-card icon-name="standard:contact" variant="base" title="Create Contact">
+                <div class="slds-m-around_medium">
+                    <lightning-record-edit-form object-api-name={contactObject} onsuccess={handleContactCreated}
+                        onerror={handleError}>
+                        <lightning-input-field field-name={nameField}></lightning-input-field>
+                        <lightning-input-field field-name={accountIdField} value={recordId}></lightning-input-field>
+                        <lightning-input-field field-name={phoneField}></lightning-input-field>
+                        <lightning-input-field field-name={emailField}></lightning-input-field>
+                        <lightning-input-field field-name={leadSourceField}></lightning-input-field>
+
+                        <div class="slds-align_absolute-center slds-p-around_medium">
+                            <lightning-button class="slds-m-around_xx-small" type="submit" variant="brand"
+                                label="Save"></lightning-button>
+
+                            <!-- To Reset All Fields on Cancel -->
+                            <lightning-button class="slds-m-around_xx-small" label="Cancel"
+                                onclick={handleReset}></lightning-button>
+                        </div>
+                    </lightning-record-edit-form>
+                </div>
+            </lightning-card>
+        </template>
+    </lightning-card>
+</template>
