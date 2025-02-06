@@ -34,6 +34,12 @@
         <name>MatchingRule</name>
     </types>
     <types>
+	<members>accountManagerImperative</members>
+	<members>accountManagerWireMethod</members>
+	<members>errorPanel</members>
+	<name>LightningComponentBundle</name>
+    </types>
+    <types>
         <members>*</members>
         <name>PathAssistant</name>
     </types>
