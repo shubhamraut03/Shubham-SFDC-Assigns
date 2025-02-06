@@ -51,6 +51,13 @@
 	<name>ApexTrigger</name>
     </types>
     <types>
+	<members>childComponent</members>
+	<members>getAccountInfo</members>
+	<members>parentComponent</members>
+	<name>LightningComponentBundle</name>
+    </types>
+
+    <types>
 	<members>AccountProcessorAsync</members>
         <members>AccountProcessorAsyncTest</members>
         <members>AddPrimaryContactQueue</members>
