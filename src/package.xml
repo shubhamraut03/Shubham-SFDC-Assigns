@@ -67,6 +67,13 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>accountManager</members>
+        <members>childComponent</members>
+        <members>parentComponent</members>
+        <name>LightningComponentBundle</name>
+    </types>
+
+    <types>
         <members>Seminar_Training_Label</members>
         <members>Webinar_Training_Label</members>
         <members>Workshop_Training_Label</members>

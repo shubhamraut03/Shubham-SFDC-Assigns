@@ -1,0 +1,16 @@
+/*
+*
+*  Purpose          :	Child Component CSS
+*
+*  Created Date     :  	23/1/2025
+*
+*  Created By       :  	Shubham Raut
+*
+*  Revision Logs    :  	V_1.0 - Created - Shubham Raut
+*
+*/
+.message{
+    color: rgb(6, 165, 154);
+    font-size: 15px;
+    font-weight: bold;
+}

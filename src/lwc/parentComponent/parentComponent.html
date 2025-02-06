@@ -1,0 +1,15 @@
+<!--
+*
+* Description - This is the parent component which will be used to pass the data to the child component
+*
+-->
+<template>
+    <lightning-card title="Parent Component">
+        <div class="slds-m-around_medium">
+            <p class="message">“Hello, World!”</p>
+            <lightning-input onchange={handleEvent}></lightning-input>
+
+            <c-child-Component child-message={message}></c-child-Component>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,35 @@
+<!--
+*
+* Description - This will Display the Account Records in the datatable
+*
+-->
+<template>
+    <lightning-card icon-name="standard:account" title="Show Account" variant="base">
+        <div class="slds-m-around_medium">
+
+            <!-- Show Account Records Onclick -->
+            <lightning-button label="Show Account Records" variant="brand" onclick={showAccHandler}
+                class="slds-m-left_x-small"></lightning-button>
+            <br><br>
+
+            <!-- Show Account Records Datatable -->
+            <template lwc:if={dataAcc}>
+
+                <!-- Hide Account Records -->
+                <lightning-button label="Hide Account Records" variant="destructive" onclick={hideAccHandler}
+                    class="slds-m-left_x-small"></lightning-button>
+                <br><br>
+
+                <lightning-datatable key-field="id" data={dataAcc} columns={columnsToShow}>
+                </lightning-datatable>
+            </template>
+
+            <!-- Show Error -->
+            <template lwc:elseif={error}>
+                <c-error-panel errors={error}></c-error-panel>
+            </template>
+        </div>
+
+    </lightning-card>
+
+</template>
