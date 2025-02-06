@@ -1,0 +1,20 @@
+<!--
+*
+* Description - This will Send the message to the messengerA component & 
+*               display the message received from messengerA component Using the Lightning Message Service
+*
+-->
+<template>
+  <lightning-card title="Messenger B Component" variant="base">
+    <div class="slds-m-around_medium">
+      Received Message: {messageFromA}
+
+      <lightning-input type="text" label="Message to Send:"></lightning-input>
+
+      <div class="slds-m-top_small">
+        <lightning-button variant="brand" label="Publish Message" onclick={handleMessage}></lightning-button>
+      </div>
+    </div>
+
+  </lightning-card>
+</template>

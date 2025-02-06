@@ -44,6 +44,12 @@
         <name>RestrictionRule</name>
     </types>
     <types>
+        <members>messengerA</members>
+        <members>messengerB</members>
+        <name>LightningComponentBundle</name>
+    </types>
+
+    <types>
 	<members>AttendeeTrigger</members>
 	<members>ContactTrigger</members>
 	<name>ApexTrigger</name>
