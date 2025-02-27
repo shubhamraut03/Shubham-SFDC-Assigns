@@ -61,6 +61,7 @@
 	<members>AttendeeTriggerHandler_Test</members>
 	<members>ContactTriggerHandler</members>
 	<members>ContactTriggerHandler_Test</members>
+        <members>ContactAddressValid_CalloutBatch</members>
         <members>TestDataFactory</members>
         <members>TriggerHandler</members>
 	<members>TriggerHandler_Test</members>
