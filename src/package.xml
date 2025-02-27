@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+	<members>accountManagerWizard</members>
+	<members>contactSaveForm</members>
+	<members>genericPicklist</members>
+	<members>usingGenericPicklist</members>
+	<name>LightningComponentBundle</name>
+    </types>
+    <types>
         <members>*</members>
         <name>ApprovalProcess</name>
     </types>
@@ -64,6 +71,8 @@
         <members>TestDataFactory</members>
         <members>TriggerHandler</members>
 	<members>TriggerHandler_Test</members>
+        <members>ContactManager</members>
+	<members>LightningResponse</members>
         <name>ApexClass</name>
     </types>
     <types>

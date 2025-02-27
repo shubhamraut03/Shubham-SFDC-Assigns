@@ -1,0 +1,18 @@
+<!--
+*
+* Description - This template is used to display the form of the Contact creation
+*
+-->
+<template>
+  <lightning-card variant="base">
+
+    <!-- Spinner  -->
+    <template if:true={isLoading}>
+      <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+
+    <lightning-input label="First Name" name="firstName"></lightning-input>
+    <lightning-input label="Last Name" name="lastName"></lightning-input>
+    <lightning-input label="Email" name="email"></lightning-input>
+  </lightning-card>
+</template>
