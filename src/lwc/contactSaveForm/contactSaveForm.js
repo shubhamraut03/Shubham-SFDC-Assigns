@@ -13,12 +13,10 @@ import { LightningElement, api, track } from 'lwc';
 
 export default class ContactSaveForm extends LightningElement {
 
-    @api isLoading = false;
+    @track isLoading = false;
     
     // To handle Inputs & validations (method will get called from Parent component "accountManagerWizard" on Save)
     @api handleContact() {
-        
-        this.isLoading = !this.isLoading;
 
         let isError = false;
 
@@ -74,7 +72,8 @@ export default class ContactSaveForm extends LightningElement {
             }
         }, this);
 
-
+        // spinner show
+        this.isLoading = true;
         // Fires event to "accountManagerWizard" Comp. only if all fields values are valid
         if (!isError) {
             const selectEvent = new CustomEvent('save', {
@@ -83,8 +82,8 @@ export default class ContactSaveForm extends LightningElement {
             this.dispatchEvent(selectEvent);
         }
 
-        this.isLoading = !this.isLoading;
-
+         // spinner hide
+        this.isLoading = false;
     }
 
 }
