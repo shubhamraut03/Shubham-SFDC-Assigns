@@ -64,6 +64,7 @@
         <members>TestDataFactory</members>
         <members>TriggerHandler</members>
 	<members>TriggerHandler_Test</members>
+        <members>AccountRestAPIService</members>
         <name>ApexClass</name>
     </types>
     <types>
