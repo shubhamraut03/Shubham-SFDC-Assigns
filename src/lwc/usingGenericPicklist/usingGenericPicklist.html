@@ -1,0 +1,35 @@
+<!--
+*
+* Description - This Component will Use Generic Picklist Component to show Picklist Values
+*
+-->
+<template>
+    <lightning-card title="Generic Picklist">
+        <div class="slds-m-around_medium slds-border_top">
+
+            <!-- To take Input of ObjectApiName and FieldApiName -->
+            <lightning-input type="text" label="Object Api Name" name="objectApiName"></lightning-input>
+            <lightning-input type="text" label="Field Api Name" name="fieldApiName"></lightning-input>
+            <div class="slds-text-align_right slds-p-top_small">
+                <lightning-button variant="brand" label="Show Picklist Values" onclick={handleClick}></lightning-button>
+            </div>
+
+            <!-- Called Generic Picklist Component -->
+            <div>
+                <c-generic-picklist object-api-name={objectApiName} field-api-name={fieldApiName}
+                    onpicklistchange={handlePicklistChange}>
+                </c-generic-picklist>
+            </div>
+
+            <!-- To show select picklist value -->
+            <div class="slds-m-top_small">
+                <template lwc:if={selectedValue}>
+                    <p class="slds-text-color_success">
+                        Selected Value = {selectedValue}
+                    </p>
+                </template>
+            </div>
+
+        </div>
+    </lightning-card>
+</template>
