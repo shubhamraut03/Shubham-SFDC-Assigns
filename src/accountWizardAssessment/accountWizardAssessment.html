@@ -1,0 +1,49 @@
+<template>
+    <lightning-card variant="base" title="Account Wizard Assessment" icon-name="standard:account">
+
+        <div class="slds-m-around_medium">
+
+            <!--START Account Records Datatable -->
+            <div style="height: 200px;">
+                <lightning-datatable key-field="id" data={accounts} columns={columnsAccount}
+                    errors={accountsError}></lightning-datatable>
+            </div>
+            <!--END Account Records Datatable -->
+
+            <!-- New Account create Button-->
+            <div class="slds-text-align_right slds-p-top_small">
+                <lightning-button label="New Account" onclick={handleCreateNewAccount}
+                    variant="brand"></lightning-button>
+            </div>
+
+
+            <!--START Account Creation Modal -->
+            <template if:true={isAccountModalOpen}>
+                <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                title="Close" onclick={handleCloseModal}>
+                                <lightning-icon icon-name="utility:close" alternative-text="close"
+                                    size="small"></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <h2 class="slds-text-heading_medium">Create New Account</h2>
+                        </header>
+
+                        <!-- Account Create Form -->
+                        <div class="slds-modal__content slds-p-around_medium">
+                            <c-account-create-form account-id={accountId} is-contact-modal-open={isContactModalOpen} onsave={handleSaveAccount}></c-account-create-form>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button label="Save" onclick={handleSave} variant="brand"></lightning-button>
+                            <lightning-button label="Cancel" onclick={handleCloseModal}></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+            <!--END Account Creation Modal -->
+        </div>
+    </lightning-card>
+</template>

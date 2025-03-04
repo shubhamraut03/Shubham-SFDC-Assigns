@@ -1,0 +1,15 @@
+<template>
+    <lightning-card icon-name="standard:account" variant="base">
+      <lightning-record-edit-form
+        density="auto"
+        object-api-name={contactObject} 
+        onsuccess={handleSuccess}
+        onerror={handleError}
+      >
+        <lightning-input-field field-name={nameField}></lightning-input-field>
+        <lightning-input-field field-name={accountIdField} value={accountId}></lightning-input-field>
+        <lightning-input-field field-name={emailField}></lightning-input-field>
+        <lightning-input-field field-name={phoneField}></lightning-input-field>      
+      </lightning-record-edit-form>
+    </lightning-card>
+</template>
